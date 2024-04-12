@@ -149,19 +149,28 @@ class Empresa
         foreach ($colCodigosMoto as $codigoMoto) {
             $objMotoCodigoEncontrado = $this->retornarMoto($codigoMoto);
 
-            if ($objMotoCodigoEncontrado != null) {
-                if ($objCliente->getDadoBaja() != false && $objMotoCodigoEncontrado->condicionVenta() != false) { 
+                if ($objMotoCodigoEncontrado != null && $objCliente->getDadoBaja() != false && $objMotoCodigoEncontrado->condicionVenta() != false) { 
                     $venta = new Venta(null,date('y-m-d'),$objCliente,$objMotoCodigoEncontrado,$objMotoCodigoEncontrado->darPrecioVenta());
                     $this->coleccionVentasRealizadas[] = $venta;
                     $precioFinal += $objMotoCodigoEncontrado->darPrecioVenta();
                 }
                 
-            }
+            
             
         }
         $this->setColeccionVentasRealizadas($this->getColeccionVentasRealizadas());
 
         return $precioFinal;
+    }
+
+    public function retornarVentasXCliente($tipo,$numDoc){
+        $ventaXCliente= [];
+        foreach($this->getColeccionVentasRealizadas() as $ventaIndividual){
+            if($ventaIndividual->getObjCliente()->getTipo() == $tipo && $numDoc == $ventaIndividual->getObjCliente()->getNroDocumento()){
+                $ventaXCliente[] = $ventaIndividual;
+            }
+        }
+        return $ventaXCliente;
     }
 
 

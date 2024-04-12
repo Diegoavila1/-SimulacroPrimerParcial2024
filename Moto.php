@@ -150,7 +150,7 @@ class Moto{
     public function darPrecioVenta(){
         $precioMoto = -1;
         if($this->getActiva() == true){
-            $precioMoto = $this->getCosto() + $this->getCosto() * ($this->getAnioFabricacion() * $this->getIncrementoAnual());
+            $precioMoto = $this->getCosto() + $this->getCosto() * ((2024 - $this->getAnioFabricacion()) * (( $this->getIncrementoAnual()) / 100));
         }
         return $precioMoto;
     }
