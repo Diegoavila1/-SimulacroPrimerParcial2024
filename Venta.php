@@ -23,9 +23,6 @@ class Venta {
         $this->precioFinal = $precioFinal;
    
     }
-
-    
-
     /**
      * Get the value of numero
      */ 
@@ -128,7 +125,7 @@ class Venta {
 
     public function IncorporarMoto($objMoto){
         $sumaTotal = 0;
-        if($objMoto->condicionVenta()){
+        if($objMoto->condicionVenta() == true){
             foreach($this->getColeccionMotos() as $objMoto){
                 $sumaTotal = $objMoto->darPrecioVenta();
             }
