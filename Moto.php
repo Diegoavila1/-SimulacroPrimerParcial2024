@@ -42,7 +42,6 @@ class Moto{
     {
         $this->codigo = $codigo;
 
-        return $this;
     }
 
     /**
@@ -61,8 +60,6 @@ class Moto{
     public function setCosto($costo)
     {
         $this->costo = $costo;
-
-        return $this;
     }
 
     /**
@@ -82,7 +79,6 @@ class Moto{
     {
         $this->anioFabricacion = $anioFabricacion;
 
-        return $this;
     }
 
     /**
@@ -102,7 +98,6 @@ class Moto{
     {
         $this->descripcion = $descripcion;
 
-        return $this;
     }
 
    
@@ -124,7 +119,6 @@ class Moto{
     {
         $this->incrementoAnual = $incrementoAnual;
 
-        return $this;
     }
 
     /**

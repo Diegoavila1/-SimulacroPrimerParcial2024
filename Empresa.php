@@ -42,7 +42,6 @@ class Empresa
     {
         $this->denominacion = $denominacion;
 
-        return $this;
     }
 
     /**
@@ -62,7 +61,6 @@ class Empresa
     {
         $this->direccion = $direccion;
 
-        return $this;
     }
 
     /**
@@ -82,7 +80,6 @@ class Empresa
     {
         $this->coleccionClientes = $coleccionClientes;
 
-        return $this;
     }
 
     /**
@@ -102,7 +99,6 @@ class Empresa
     {
         $this->coleccionMotos = $coleccionMotos;
 
-        return $this;
     }
 
     /**
@@ -122,7 +118,6 @@ class Empresa
     {
         $this->coleccionVentasRealizadas = $coleccionVentasRealizadas;
 
-        return $this;
     }
 
     //devulve un obj moto , que se compara la coleccion de motos y el codigo

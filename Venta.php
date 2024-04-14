@@ -40,7 +40,6 @@ class Venta {
     {
         $this->numero = $numero;
 
-        return $this;
     }
 
     /**
@@ -60,7 +59,6 @@ class Venta {
     {
         $this->fecha = $fecha;
 
-        return $this;
     }
 
     /**
@@ -80,7 +78,6 @@ class Venta {
     {
         $this->coleccionMotos = $coleccionMotos;
 
-        return $this;
     }
 
     /**
@@ -100,7 +97,6 @@ class Venta {
     {
         $this->precioFinal = $precioFinal;
 
-        return $this;
     }
 
     /**
@@ -120,7 +116,6 @@ class Venta {
     {
         $this->objCliente = $objCliente;
 
-        return $this;
     }
 
     public function IncorporarMoto($objMoto){
