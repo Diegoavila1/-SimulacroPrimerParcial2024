@@ -38,8 +38,6 @@ class Cliente{
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
-        return $this;
     }
 
     /**
@@ -58,8 +56,6 @@ class Cliente{
     public function setApellido($apellido)
     {
         $this->apellido = $apellido;
-
-        return $this;
     }
 
     /**
@@ -78,8 +74,6 @@ class Cliente{
     public function setDadoBaja($dadoBaja)
     {
         $this->dadoBaja = $dadoBaja;
-
-        return $this;
     }
 
     /**
@@ -98,8 +92,6 @@ class Cliente{
     public function setTipo($tipo)
     {
         $this->tipo = $tipo;
-
-        return $this;
     }
 
     /**
@@ -118,8 +110,6 @@ class Cliente{
     public function setNroDocumento($nroDocumento)
     {
         $this->nroDocumento = $nroDocumento;
-
-        return $this;
     }
 
     public function __toString()

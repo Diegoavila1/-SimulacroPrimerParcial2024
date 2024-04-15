@@ -140,21 +140,20 @@ class Empresa
     public function registrarVenta($colCodigosMoto, $objCliente)
     {
         $precioFinal = 0;
+        $coleccionVentasRealizadas[] = $this->coleccionVentasRealizadas;
 
         foreach ($colCodigosMoto as $codigoMoto) {
             $objMotoCodigoEncontrado = $this->retornarMoto($codigoMoto);
 
                 if ($objMotoCodigoEncontrado != null && $objCliente->getDadoBaja() != false && $objMotoCodigoEncontrado->condicionVenta() != false) { 
-                    $venta = new Venta(null,date('y-m-d'),$objCliente,$objMotoCodigoEncontrado,$objMotoCodigoEncontrado->darPrecioVenta());
-                    $this->coleccionVentasRealizadas[] = $venta;
+                    $venta = new Venta("",date('y-m-d'),$objCliente,$objMotoCodigoEncontrado,$objMotoCodigoEncontrado->darPrecioVenta());
+                    array_push($coleccionVentasRealizadas,$venta);
+                    $this->setColeccionVentasRealizadas($coleccionVentasRealizadas);
                     $precioFinal += $objMotoCodigoEncontrado->darPrecioVenta();
-                }
-                
-            
-            
-        }
-        $this->setColeccionVentasRealizadas($this->getColeccionVentasRealizadas());
+                    $venta->setPrecioFinal($precioFinal);
 
+                }
+        }
         return $precioFinal;
     }
 
