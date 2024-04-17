@@ -9,7 +9,7 @@ class Empresa{
     private $coleccionMotos;
     private $coleccionVentasRealizadas;
 
-	public function __constructor($denominacion, $direccion, $coleccionClientes, $coleccionMotos, $coleccionVentasRealizadas) {
+	public function __construct($denominacion, $direccion, $coleccionClientes, $coleccionMotos, $coleccionVentasRealizadas) {
 
 		$this->denominacion = $denominacion;
 		$this->direccion = $direccion;
@@ -79,16 +79,15 @@ class Empresa{
             $objMotoCod = $this->retornarMoto($codigo);
             if($objMotoCod != null && $objCliente->getEstado() && $objMotoCod->getActiva()){
                 if($venta == null){
-                    $venta = Venta("",date('y,m,d',$objMotoCod,$objMotoCod->darPrecioVenta()));
+                    $venta = new Venta("",date('y,m,d'),$objCliente,$this->getColeccionMotos(),$objMotoCod->darPrecioVenta());
                 }
                 $this->coleccionVentasRealizadas[] = $venta;
-                $impFinal += $objMotoCodigoEncontrado->darPrecioVenta();
+                $impFinal += $objMotoCod->darPrecioVenta();
             }
         }
         if($venta !== null){
             $this->setColeccionVentasRealizadas($this->getColeccionVentasRealizadas());
-            print_r($this->getColeccionVentasRealizadas());
-    
+  
         }
         
         return $impFinal;

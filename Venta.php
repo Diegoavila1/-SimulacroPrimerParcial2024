@@ -7,7 +7,7 @@ class Venta{
     private $coleccionMotos;
     private $precioFinal;
 
-	public function __constructor($numero, $fecha, $objCliente, $coleccionMotos, $precioFinal) {
+	public function __construct($numero, $fecha, $objCliente, $coleccionMotos, $precioFinal) {
 
 		$this->numero = $numero;
 		$this->fecha = $fecha;

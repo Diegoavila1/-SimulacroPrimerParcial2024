@@ -7,7 +7,7 @@ class Cliente {
     private $tipo;
     private $numDoc;
 
-	public function __constructor($nombre, $apellido, $Estado, $tipo, $numDoc) {
+	public function __construct($nombre, $apellido, $Estado, $tipo, $numDoc) {
 
 		$this->nombre = $nombre;
 		$this->apellido = $apellido;

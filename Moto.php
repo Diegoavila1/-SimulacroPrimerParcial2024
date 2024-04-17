@@ -6,17 +6,15 @@ class Moto {
     private $anioFabricacion;
     private $descripcion;
     private $porcentaje;
-    private $incrementoAnual;
     private $activa;
 
-	public function __constructor($codigo, $costo, $anioFabricacion, $descripcion, $porcentaje, $incrementoAnual, $activa) {
+	public function __construct($codigo, $costo, $anioFabricacion, $descripcion, $porcentaje, $activa) {
 
 		$this->codigo = $codigo;
 		$this->costo = $costo;
 		$this->anioFabricacion = $anioFabricacion;
 		$this->descripcion = $descripcion;
-		$this->porcentaje = $porcentaje;
-		$this->incrementoAnual = $incrementoAnual;
+		$this->porcentaje = $porcentaje;		
 		$this->activa = $activa;
 	}
 
@@ -60,13 +58,6 @@ class Moto {
 		$this->porcentaje = $value;
 	}
 
-	public function getIncrementoAnual() {
-		return $this->incrementoAnual;
-	}
-
-	public function setIncrementoAnual($value) {
-		$this->incrementoAnual = $value;
-	}
 
 	public function getActiva() {
 		return $this->activa;
@@ -81,7 +72,7 @@ class Moto {
     public function darPrecioVenta(){
 
         if($this->getActiva()){
-            $valorBici = $this->getCosto()+$this->getCosto()*(2024 * $this->getIncrementoAnual()); 
+            $valorBici = $this->getCosto()+$this->getCosto()*(2024 * $this->getPorcentaje()); 
         }else{
             $valorBici = -1;
         }
@@ -95,7 +86,6 @@ costo : {$this->getCosto()}
 año fabricación : {$this->getAnioFabricacion()} 
 descripción : {$this->getDescripcion()}
 porcentaje : {$this->getPorcentaje()}
-incremento anual : {$this->getIncrementoAnual()} 
 activa : {$this->getActiva()}";
     }
 }

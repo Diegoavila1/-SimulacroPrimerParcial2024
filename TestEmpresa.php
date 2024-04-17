@@ -3,7 +3,7 @@
 include_once 'Cliente.php';
 include_once 'Venta.php';
 include_once 'Moto.php';
-include_once 'C:\Users\Diego\Documents\FACULTAD\ipoo\1erSimulacro\Empresa.php';
+include_once 'Empresa.php';
 
 $objCliente1 = new Cliente("diego","rios",true,"tipo",123456789);
 $objCliente2 = new Cliente("barco","valen",false,"tipo",147258369);
@@ -16,7 +16,7 @@ $objMoto3 = new Moto (13 ,999900 , 2023 ,"Zanella Patagonian Eagle 250" ,55,fals
 $objEmpresa = new Empresa("Alta Gama","Av // Argenetina 123",[$objCliente1, $objCliente2 ],[$objMoto1, $objMoto2, $objMoto3],[]);
 
 $objEmpresa->registrarVenta([11,12,13], $objCliente1); 
-//$objEmpresa->mostrarColeccionVentasRealizadas();
+$objEmpresa->mostrarColeccionVentasRealizadas();
 
 //echo $objEmpresa->mostrarColeccionVentasRealizadas();
 //echo $objEmpresa->mostrarColeccionVentasRealizadas();
