@@ -1,168 +1,99 @@
 <?php
-include_once "Venta.php";
 
+include_once 'Venta.php';
 
-class Empresa
-{
+class Empresa{
     private $denominacion;
-
     private $direccion;
-
     private $coleccionClientes;
-
     private $coleccionMotos;
-
     private $coleccionVentasRealizadas;
 
-    public function __construct($denominacionExt, $direccionExt, $coleccionClientenExt, $coleccionMotonExt, $coleccionVentasRealizadanExt)
-    {
-        $this->denominacion = $denominacionExt;
-        $this->direccion = $direccionExt;
-        $this->coleccionClientes = $coleccionClientenExt;
-        $this->coleccionMotos = $coleccionMotonExt;
-        $this->coleccionVentasRealizadas = $coleccionVentasRealizadanExt;
-    }
+	public function __constructor($denominacion, $direccion, $coleccionClientes, $coleccionMotos, $coleccionVentasRealizadas) {
 
+		$this->denominacion = $denominacion;
+		$this->direccion = $direccion;
+		$this->coleccionClientes = $coleccionClientes;
+		$this->coleccionMotos = $coleccionMotos;
+		$this->coleccionVentasRealizadas = $coleccionVentasRealizadas;
+	}
 
+	public function getDenominacion() {
+		return $this->denominacion;
+	}
 
-    /**
-     * Get the value of denominacion
-     */
-    public function getDenominacion()
-    {
-        return $this->denominacion;
-    }
+	public function setDenominacion($value) {
+		$this->denominacion = $value;
+	}
 
-    /**
-     * Set the value of denominacion
-     *
-     * @return  self
-     */
-    public function setDenominacion($denominacion)
-    {
-        $this->denominacion = $denominacion;
+	public function getDireccion() {
+		return $this->direccion;
+	}
 
-    }
+	public function setDireccion($value) {
+		$this->direccion = $value;
+	}
 
-    /**
-     * Get the value of direccion
-     */
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
+	public function getColeccionClientes() {
+		return $this->coleccionClientes;
+	}
 
-    /**
-     * Set the value of direccion
-     *
-     * @return  self
-     */
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
+	public function setColeccionClientes($value) {
+		$this->coleccionClientes = $value;
+	}
 
-    }
+	public function getColeccionMotos() {
+		return $this->coleccionMotos;
+	}
 
-    /**
-     * Get the value of coleccionClientes
-     */
-    public function getColeccionClientes()
-    {
-        return $this->coleccionClientes;
-    }
+	public function setColeccionMotos($value) {
+		$this->coleccionMotos = $value;
+	}
 
-    /**
-     * Set the value of coleccionClientes
-     *
-     * @return  self
-     */
-    public function setColeccionClientes($coleccionClientes)
-    {
-        $this->coleccionClientes = $coleccionClientes;
+	public function getColeccionVentasRealizadas() {
+		return $this->coleccionVentasRealizadas;
+	}
 
-    }
-
-    /**
-     * Get the value of coleccionMotos
-     */
-    public function getColeccionMotos()
-    {
-        return $this->coleccionMotos;
-    }
-
-    /**
-     * Set the value of coleccionMotos
-     *
-     * @return  self
-     */
-    public function setColeccionMotos($coleccionMotos)
-    {
-        $this->coleccionMotos = $coleccionMotos;
-
-    }
-
-    /**
-     * Get the value of coleccionVentasRealizadas
-     */
-    public function getColeccionVentasRealizadas()
-    {
-        return $this->coleccionVentasRealizadas;
-    }
-
-    /**
-     * Set the value of coleccionVentasRealizadas
-     *
-     * @return  self
-     */
-    public function setColeccionVentasRealizadas($coleccionVentasRealizadas)
-    {
-        $this->coleccionVentasRealizadas = $coleccionVentasRealizadas;
-
-    }
-
+	public function setColeccionVentasRealizadas($value) {
+		$this->coleccionVentasRealizadas = $value;
+	}
     
-    //devulve un obj moto , que se compara la coleccion de motos y el codigo
-    public function retornarMoto($codigoMoto)
-    {
-        $i = 0;
+    public function retornarMoto($codigoMoto){
+        $i=0;
         $objMoto = null;
-        while ($i < count($this->getColeccionMotos()) && $objMoto == null ) {
-            if ($this->getColeccionMotos()[$i]->getCodigo() === $codigoMoto) {
+        while($i < count($this->getColeccionMotos()) && $objMoto == null){
+            if($this->getColeccionMotos()[$i]->getCodigo() == $codigoMoto){
                 $objMoto = $this->getColeccionMotos()[$i];
+            }else{
+                $i++;
             }
-            $i++;
         }
-
         return $objMoto;
     }
+    public function registrarVenta($colCodigosMoto,$objCliente){
 
-
-
-    public function registrarVenta($colCodigosMoto, $objCliente)
-    {
         $impFinal = 0;
         $venta = null;
-        $arrayVenta = $this->getColeccionVentasRealizadas();
 
         foreach($colCodigosMoto as $codigo){
-            $objMoto = $this->retornarMoto($codigo);
-            if($objMoto && $objCliente->getDadoBaja() && $objMoto->condicionVenta()){
+            $objMotoCod = $this->retornarMoto($codigo);
+            if($objMotoCod != null && $objCliente->getEstado() && $objMotoCod->getActiva()){
                 if($venta == null){
-                    $venta = new Venta("",date('y,m,d'),$objCliente,$objMoto,$objMoto->darPrecioVenta());
+                    $venta = Venta("",date('y,m,d',$objMotoCod,$objMotoCod->darPrecioVenta()));
                 }
-                $arrayVenta[] = $venta;
-                $impFinal += $objMoto->darPrecioVenta();
+                $this->coleccionVentasRealizadas[] = $venta;
+                $impFinal += $objMotoCodigoEncontrado->darPrecioVenta();
             }
         }
-
         if($venta !== null){
-            $this->setColeccionVentasRealizadas($arrayVenta);
+            $this->setColeccionVentasRealizadas($this->getColeccionVentasRealizadas());
+            print_r($this->getColeccionVentasRealizadas());
+    
         }
         
         return $impFinal;
     }
-
-
+    
     public function retornarVentasXCliente($tipo,$numDoc){
         $ventaXCliente= [];
         foreach($this->getColeccionVentasRealizadas() as $ventaIndividual){
@@ -172,8 +103,6 @@ class Empresa
         }
         return $ventaXCliente;
     }
-
-
     public function mostrarColeccionClientes()
     {
         $texto = "";
@@ -218,28 +147,5 @@ coleccion de motos :
 coleccion de ventas realizadas :
 {$this->mostrarColeccionVentasRealizadas()}";
     }
+
 }
-
-/*
-        $impFinal = 0;
-        $venta = [];
-
-        foreach ($colCodigosMoto as $codigoMoto) {
-            $objMotoCodigoEncontrado = $this->retornarMoto($codigoMoto);
-
-                if ($objMotoCodigoEncontrado != null && $objCliente->getDadoBaja() != false && $objMotoCodigoEncontrado->condicionVenta() != false) { 
-                    
-                    if($venta == null){
-                        $venta = new Venta("",date('y-m-d'),$objCliente,$objMotoCodigoEncontrado,$objMotoCodigoEncontrado->darPrecioVenta());   
-                    }
-                    $this->objVenta[] = $venta;
-                    $impFinal += $objMotoCodigoEncontrado->darPrecioVenta();
-                }
-        }
-        
-        if($venta !== null){
-            $this->setObjVenta($this->getObjVenta());
-        }
-
-        return $impFinal;
-*/

@@ -1,169 +1,101 @@
 <?php
 
-class Moto{
+class Moto {
     private $codigo;
-
     private $costo;
-
     private $anioFabricacion;
-
     private $descripcion;
-
+    private $porcentaje;
     private $incrementoAnual;
-
     private $activa;
 
-    public function __construct($codigo, $costo, $anioFabricacion, $descripcion, $incrementoAnual, $activa)
-    {
-        $this->codigo = $codigo;
-        $this->costo = $costo;
-        $this->anioFabricacion = $anioFabricacion;
-        $this->descripcion = $descripcion;
-        $this->incrementoAnual = $incrementoAnual;
-        $this->activa = $activa;
-    }
+	public function __constructor($codigo, $costo, $anioFabricacion, $descripcion, $porcentaje, $incrementoAnual, $activa) {
 
-    
+		$this->codigo = $codigo;
+		$this->costo = $costo;
+		$this->anioFabricacion = $anioFabricacion;
+		$this->descripcion = $descripcion;
+		$this->porcentaje = $porcentaje;
+		$this->incrementoAnual = $incrementoAnual;
+		$this->activa = $activa;
+	}
 
-    /**
-     * Get the value of codigo
-     */ 
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
+	public function getCodigo() {
+		return $this->codigo;
+	}
 
-    /**
-     * Set the value of codigo
-     *
-     * @return  self
-     */ 
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
+	public function setCodigo($value) {
+		$this->codigo = $value;
+	}
 
-    }
+	public function getCosto() {
+		return $this->costo;
+	}
 
-    /**
-     * Get the value of costo
-     */ 
-    public function getCosto()
-    {
-        return $this->costo;
-    }
+	public function setCosto($value) {
+		$this->costo = $value;
+	}
 
-    /**
-     * Set the value of costo
-     *
-     * @return  self
-     */ 
-    public function setCosto($costo)
-    {
-        $this->costo = $costo;
-    }
+	public function getAnioFabricacion() {
+		return $this->anioFabricacion;
+	}
 
-    /**
-     * Get the value of anioFabricacion
-     */ 
-    public function getAnioFabricacion()
-    {
-        return $this->anioFabricacion;
-    }
+	public function setAnioFabricacion($value) {
+		$this->anioFabricacion = $value;
+	}
 
-    /**
-     * Set the value of anioFabricacion
-     *
-     * @return  self
-     */ 
-    public function setAnioFabricacion($anioFabricacion)
-    {
-        $this->anioFabricacion = $anioFabricacion;
+	public function getDescripcion() {
+		return $this->descripcion;
+	}
 
-    }
+	public function setDescripcion($value) {
+		$this->descripcion = $value;
+	}
 
-    /**
-     * Get the value of descripcion
-     */ 
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
+	public function getPorcentaje() {
+		return $this->porcentaje;
+	}
 
-    /**
-     * Set the value of descripcion
-     *
-     * @return  self
-     */ 
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
+	public function setPorcentaje($value) {
+		$this->porcentaje = $value;
+	}
 
-    }
+	public function getIncrementoAnual() {
+		return $this->incrementoAnual;
+	}
 
-   
+	public function setIncrementoAnual($value) {
+		$this->incrementoAnual = $value;
+	}
 
-    /**
-     * Get the value of incrementoAnual
-     */ 
-    public function getIncrementoAnual()
-    {
-        return $this->incrementoAnual;
-    }
+	public function getActiva() {
+		return $this->activa;
+	}
 
-    /**
-     * Set the value of incrementoAnual
-     *
-     * @return  self
-     */ 
-    public function setIncrementoAnual($incrementoAnual)
-    {
-        $this->incrementoAnual = $incrementoAnual;
+	public function setActiva($value) {
+		$this->activa = $value;
+	}
 
-    }
 
-    /**
-     * Get the value of activa
-     */ 
-    public function getActiva()
-    {
-        return $this->activa;
-    }
-
-    /**
-     * Set the value of activa
-     *
-     * @return  self
-     */ 
-    public function setActiva($activa)
-    {
-        $this->activa = $activa;
-
-        return $this;
-    }
 
     public function darPrecioVenta(){
-        $precioMoto = -1;
-        if($this->getActiva() == true){
-            $precioMoto = $this->getCosto() + $this->getCosto() * ((2024 - $this->getAnioFabricacion()) * (( $this->getIncrementoAnual()) / 100));
+
+        if($this->getActiva()){
+            $valorBici = $this->getCosto()+$this->getCosto()*(2024 * $this->getIncrementoAnual()); 
+        }else{
+            $valorBici = -1;
         }
-        return $precioMoto;
+        return $valorBici;
     }
 
-    public function condicionVenta(){
-        $booleano = false;
-        if($this->getActiva()){
-            $booleano = true;
-        }
-        return $booleano;
-    }
-    
     public function __toString()
     {
-        return "costo : {$this->getCosto()}
-año de fabricacion : {$this->getAnioFabricacion()}
-descripcion : {$this->getDescripcion()}
-porcentaje incremento anual : {$this->getIncrementoAnual()}
-activo : {$this->getActiva()} \n";
+        return "código : {$this->getCodigo()} 
+costo : {$this->getCosto()}
+año fabricación : {$this->getAnioFabricacion()} 
+descripción : {$this->getDescripcion()}
+porcentaje : {$this->getPorcentaje()}
+incremento anual : {$this->getIncrementoAnual()} 
+activa : {$this->getActiva()}";
     }
-
 }

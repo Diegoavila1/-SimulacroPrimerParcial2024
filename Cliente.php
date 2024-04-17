@@ -1,125 +1,67 @@
 <?php
 
-class Cliente{
+class Cliente {
     private $nombre;
-
     private $apellido;
-
-    private $dadoBaja;
-
+    private $Estado;
     private $tipo;
+    private $numDoc;
 
-    private $nroDocumento;
+	public function __constructor($nombre, $apellido, $Estado, $tipo, $numDoc) {
 
-    public function __construct($nombre, $apellido, $dadoBaja, $tipo, $nroDocumento)
-    {
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->dadoBaja = $dadoBaja;
-        $this->tipo = $tipo;
-        $this->nroDocumento = $nroDocumento;
-    }
-    
-    
+		$this->nombre = $nombre;
+		$this->apellido = $apellido;
+		$this->Estado = $Estado;
+		$this->tipo = $tipo;
+		$this->numDoc = $numDoc;
+	}
 
-    /**
-     * Get the value of nombre
-     */ 
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
+	public function getNombre() {
+		return $this->nombre;
+	}
 
-    /**
-     * Set the value of nombre
-     *
-     * @return  self
-     */ 
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
+	public function setNombre($value) {
+		$this->nombre = $value;
+	}
 
-    /**
-     * Get the value of apellido
-     */ 
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
+	public function getApellido() {
+		return $this->apellido;
+	}
 
-    /**
-     * Set the value of apellido
-     *
-     * @return  self
-     */ 
-    public function setApellido($apellido)
-    {
-        $this->apellido = $apellido;
-    }
+	public function setApellido($value) {
+		$this->apellido = $value;
+	}
 
-    /**
-     * Get the value of dadoBaja
-     */ 
-    public function getDadoBaja()
-    {
-        return $this->dadoBaja;
-    }
+	public function getEstado() {
+		return $this->Estado;
+	}
 
-    /**
-     * Set the value of dadoBaja
-     *
-     * @return  self
-     */ 
-    public function setDadoBaja($dadoBaja)
-    {
-        $this->dadoBaja = $dadoBaja;
-    }
+	public function setEstado($value) {
+		$this->Estado = $value;
+	}
 
-    /**
-     * Get the value of tipo
-     */ 
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
+	public function getTipo() {
+		return $this->tipo;
+	}
 
-    /**
-     * Set the value of tipo
-     *
-     * @return  self
-     */ 
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    }
+	public function setTipo($value) {
+		$this->tipo = $value;
+	}
 
-    /**
-     * Get the value of nroDocumento
-     */ 
-    public function getNroDocumento()
-    {
-        return $this->nroDocumento;
-    }
+	public function getNumDoc() {
+		return $this->numDoc;
+	}
 
-    /**
-     * Set the value of nroDocumento
-     *
-     * @return  self
-     */ 
-    public function setNroDocumento($nroDocumento)
-    {
-        $this->nroDocumento = $nroDocumento;
-    }
+	public function setNumDoc($value) {
+		$this->numDoc = $value;
+	}
 
     public function __toString()
     {
-        return 
-"nombre : {$this->getNombre()}
+        return "nombre: {$this->getNombre()}
 apellido : {$this->getApellido()}
-dadoBaja : {$this->getDadoBaja()}
-tipo : {$this->getTipo()}
-numero de documento : {$this->getNroDocumento()}\n";
+habilitado : {$this->getEstado()}
+dni : {$this->getTipo()}
+numero de documento : {$this->getNumDoc()}";
     }
-
 }

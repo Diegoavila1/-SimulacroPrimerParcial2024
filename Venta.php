@@ -1,126 +1,64 @@
 <?php
-include_once "Moto.php";
 
-class Venta {
-    private $numero;
-
+class Venta{
+	private $numero;
     private $fecha;
-
     private $objCliente;
-
     private $coleccionMotos;
-
     private $precioFinal;
 
+	public function __constructor($numero, $fecha, $objCliente, $coleccionMotos, $precioFinal) {
 
+		$this->numero = $numero;
+		$this->fecha = $fecha;
+		$this->objCliente = $objCliente;
+		$this->coleccionMotos = $coleccionMotos;
+		$this->precioFinal = $precioFinal;
+	}
 
-    public function __construct($numero, $fecha,$objCliente,$coleccionMotos, $precioFinal)
-    {
-        $this->numero = $numero;
-        $this->fecha = $fecha;
-        $this->objCliente = $objCliente;
-        $this->coleccionMotos = $coleccionMotos;
-        $this->precioFinal = $precioFinal;
-   
-    }
-    /**
-     * Get the value of numero
-     */ 
-    public function getNumero()
-    {
-        return $this->numero;
-    }
+	public function getNumero() {
+		return $this->numero;
+	}
 
-    /**
-     * Set the value of numero
-     *
-     * @return  self
-     */ 
-    public function setNumero($numero)
-    {
-        $this->numero = $numero;
+	public function setNumero($value) {
+		$this->numero = $value;
+	}
 
-    }
+	public function getFecha() {
+		return $this->fecha;
+	}
 
-    /**
-     * Get the value of fecha
-     */ 
-    public function getFecha()
-    {
-        return $this->fecha;
-    }
+	public function setFecha($value) {
+		$this->fecha = $value;
+	}
 
-    /**
-     * Set the value of fecha
-     *
-     * @return  self
-     */ 
-    public function setFecha($fecha)
-    {
-        $this->fecha = $fecha;
+	public function getObjCliente() {
+		return $this->objCliente;
+	}
 
-    }
+	public function setObjCliente($value) {
+		$this->objCliente = $value;
+	}
 
-    /**
-     * Get the value of coleccionMotos
-     */ 
-    public function getColeccionMotos()
-    {
-        return $this->coleccionMotos;
-    }
+	public function getColeccionMotos() {
+		return $this->coleccionMotos;
+	}
 
-    /**
-     * Set the value of coleccionMotos
-     *
-     * @return  self
-     */ 
-    public function setColeccionMotos($coleccionMotos)
-    {
-        $this->coleccionMotos = $coleccionMotos;
+	public function setColeccionMotos($value) {
+		$this->coleccionMotos = $value;
+	}
 
-    }
+	public function getPrecioFinal() {
+		return $this->precioFinal;
+	}
 
-    /**
-     * Get the value of precioFinal
-     */ 
-    public function getPrecioFinal()
-    {
-        return $this->precioFinal;
-    }
-
-    /**
-     * Set the value of precioFinal
-     *
-     * @return  self
-     */ 
-    public function setPrecioFinal($precioFinal)
-    {
-        $this->precioFinal = $precioFinal;
-
-    }
-
-    /**
-     * Get the value of objCliente
-     */ 
-    public function getObjCliente()
-    {
-        return $this->objCliente;
-    }
-
-    /**
-     * Set the value of objCliente
-     *
-     * @return  self
-     */ 
-    public function setObjCliente($objCliente)
-    {
-        $this->objCliente = $objCliente;
-
-    }
-
+	public function setPrecioFinal($value) {
+		$this->precioFinal = $value;
+	}
+	
     public function IncorporarMoto($objMoto){
         $sumaTotal = 0;
-        if($objMoto->condicionVenta() == true){
+        if($objMoto->getActiva()){
             foreach($this->getColeccionMotos() as $objMoto){
                 $sumaTotal = $objMoto->darPrecioVenta();
             }
