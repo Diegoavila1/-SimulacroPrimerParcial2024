@@ -14,8 +14,6 @@ class Empresa
 
     private $coleccionVentasRealizadas;
 
-    private $objVenta = [];
-
     public function __construct($denominacionExt, $direccionExt, $coleccionClientenExt, $coleccionMotonExt, $coleccionVentasRealizadanExt)
     {
         $this->denominacion = $denominacionExt;
@@ -122,26 +120,7 @@ class Empresa
 
     }
 
-    /**
-     * Get the value of coleccionVentasRealizadas
-     */
-    public function getObjVenta()
-    {
-        return $this->objVenta;
-    }
-
-    /**
-     * Set the value of coleccionVentasRealizadas
-     *
-     * @return  self
-     */
-    public function setObjVenta($objVenta)
-    {
-        $this->objVenta = $objVenta;
-
-    }
-
-
+    
     //devulve un obj moto , que se compara la coleccion de motos y el codigo
     public function retornarMoto($codigoMoto)
     {
@@ -163,20 +142,21 @@ class Empresa
     {
         $impFinal = 0;
         $venta = null;
+        $arrayVenta = $this->getColeccionVentasRealizadas();
 
         foreach($colCodigosMoto as $codigo){
             $objMoto = $this->retornarMoto($codigo);
-            if($objMoto && $objCliente->dadoBaja() && $objMoto->condicionVenta()){
+            if($objMoto && $objCliente->getDadoBaja() && $objMoto->condicionVenta()){
                 if($venta == null){
                     $venta = new Venta("",date('y,m,d'),$objCliente,$objMoto,$objMoto->darPrecioVenta());
                 }
-                $venta[] = $venta;
+                $arrayVenta[] = $venta;
                 $impFinal += $objMoto->darPrecioVenta();
             }
         }
 
         if($venta !== null){
-            $this->setObjVenta($this->getObjVenta());
+            $this->setColeccionVentasRealizadas($arrayVenta);
         }
         
         return $impFinal;
@@ -220,11 +200,9 @@ class Empresa
     {
         $texto = "";
         foreach ($this->getColeccionVentasRealizadas() as $venta) {
-            foreach ($venta as $llave) {
-                $texto .= "$llave";
+                $texto .= "$venta";
                 $texto .= "\n";
             }
-        }
         return $texto;
     }
 
