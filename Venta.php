@@ -66,12 +66,20 @@ class Venta{
         }
     }
 
+	public function listaDeMotos(){
+		$string = "";
+		foreach($this->getColeccionMotos() as $moto){
+			$string .= "$moto";
+		}
+		return $string;
+	}
+
     public function __toString()
     {
         return "numero : {$this->getNumero()}
 fecha : {$this->getFecha()}
 El cliente : {$this->getObjCliente()}
-coleccion de motos : {$this->getColeccionMotos()}
-precio final : {$this->getPrecioFinal()}";
+coleccion de motos : {$this->listaDeMotos()}
+precio final : {$this->getPrecioFinal()}\n";
     }
 }

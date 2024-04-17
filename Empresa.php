@@ -58,6 +58,7 @@ class Empresa{
 		$this->coleccionVentasRealizadas = $value;
 	}
     
+    
     public function retornarMoto($codigoMoto){
         $i=0;
         $objMoto = null;
@@ -70,6 +71,8 @@ class Empresa{
         }
         return $objMoto;
     }
+
+
     public function registrarVenta($colCodigosMoto,$objCliente){
 
         $impFinal = 0;
@@ -77,17 +80,17 @@ class Empresa{
 
         foreach($colCodigosMoto as $codigo){
             $objMotoCod = $this->retornarMoto($codigo);
-            if($objMotoCod != null && $objCliente->getEstado() && $objMotoCod->getActiva()){
+
+            if($objMotoCod != null && $objCliente->getEstado() != false && $objMotoCod->getActiva() != false){
                 if($venta == null){
                     $venta = new Venta("",date('y,m,d'),$objCliente,$this->getColeccionMotos(),$objMotoCod->darPrecioVenta());
+                    $this->coleccionVentasRealizadas[] = $venta;
                 }
-                $this->coleccionVentasRealizadas[] = $venta;
                 $impFinal += $objMotoCod->darPrecioVenta();
             }
         }
         if($venta !== null){
             $this->setColeccionVentasRealizadas($this->getColeccionVentasRealizadas());
-  
         }
         
         return $impFinal;
@@ -134,6 +137,7 @@ class Empresa{
         return $texto;
     }
 
+
     public function __toString()
     {
         return "denominacion : {$this->getDenominacion()}
@@ -144,7 +148,7 @@ coleccion de clientes :
 coleccion de motos :
  {$this->mostrarColeccionMotos()}
 coleccion de ventas realizadas :
-{$this->mostrarColeccionVentasRealizadas()}";
+{$this->mostrarColeccionVentasRealizadas()} \n";
     }
 
 }

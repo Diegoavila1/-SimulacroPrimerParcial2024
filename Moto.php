@@ -71,12 +71,12 @@ class Moto {
 
     public function darPrecioVenta(){
 
-        if($this->getActiva()){
-            $valorBici = $this->getCosto()+$this->getCosto()*(2024 * $this->getPorcentaje()); 
+        if($this->getActiva() == true){
+            $valor = $this->getCosto()+$this->getCosto()*(2024 - (1*($this->getPorcentaje()/100))); 
         }else{
-            $valorBici = -1;
+            $valor = -1;
         }
-        return $valorBici;
+        return $valor;
     }
 
     public function __toString()
@@ -86,6 +86,6 @@ costo : {$this->getCosto()}
 año fabricación : {$this->getAnioFabricacion()} 
 descripción : {$this->getDescripcion()}
 porcentaje : {$this->getPorcentaje()}
-activa : {$this->getActiva()}";
+activa : {$this->getActiva()}\n";
     }
 }

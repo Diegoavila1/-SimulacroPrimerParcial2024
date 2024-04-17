@@ -62,6 +62,6 @@ class Cliente {
 apellido : {$this->getApellido()}
 habilitado : {$this->getEstado()}
 dni : {$this->getTipo()}
-numero de documento : {$this->getNumDoc()}";
+numero de documento : {$this->getNumDoc()}\n";
     }
 }
